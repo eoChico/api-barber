@@ -6,8 +6,9 @@ import (
 )
 
 func InitRoutes(r *gin.Engine) {
+	handler.InitHandler()
 	v1 := r.Group("/api")
 	{
-		v1.GET("/scheduling",handler.CreateScheduling)
+		v1.POST("/scheduling", handler.CreateScheduling)
 	}
 }
