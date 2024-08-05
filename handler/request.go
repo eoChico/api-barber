@@ -18,6 +18,18 @@ type CreateSchedulingRequest struct {
 	Status      string    `json:"status"`
 }
 
+// show schedulings
+type ShowSchedulingsRequest struct {
+	Day time.Time `json:"day"`
+}
+
+func (r *ShowSchedulingsRequest) Validate() error {
+	if r.Day.IsZero() == true {
+		return errParamsisRequired("day", "time")
+	}
+	return nil
+}
+
 func (r *CreateSchedulingRequest) Validate() error {
 	if r.EndTime.IsZero() == true && r.Status == "" && r.StartTime.IsZero() == true && r.Description == "" {
 		return fmt.Errorf("request body is empty or malformed")

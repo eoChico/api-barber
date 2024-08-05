@@ -10,5 +10,7 @@ func InitRoutes(r *gin.Engine) {
 	v1 := r.Group("/api")
 	{
 		v1.POST("/scheduling", handler.CreateScheduling)
+		v1.GET("/scheduling", handler.ShowScheduling)
+		//	v1.GET("/date", handler.ListDate)
 	}
 }
