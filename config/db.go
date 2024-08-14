@@ -15,10 +15,22 @@ func InitializeDatabase() (*gorm.DB, error) {
 		return nil, err
 	}
 	//migrate models
+	err = db.AutoMigrate(&models.Barber{})
+	if err != nil {
+		logger.Errorf("migrate barber error: %v", err)
+		return nil, err
+	}
+	err = db.AutoMigrate(&models.Client{})
+	if err != nil {
+		logger.Errorf("migrate clint error: %v", err)
+		return nil, err
+	}
+
 	err = db.AutoMigrate(&models.Scheduling{})
 	if err != nil {
 		logger.Errorf("migrate scheduling error: %v", err)
 		return nil, err
 	}
+
 	return db, nil
 }
